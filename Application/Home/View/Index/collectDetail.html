@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>{$user}的收藏</title>
+	<link rel="icon" href="__PUBLIC__/image/favicon.ico" mce_href="//www.jd.com/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bootstrap.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/css/style.css">
+	<style type="text/css">
+		.juti {
+			border-right: 1px solid #666;
+			float: left;
+			margin-bottom: 50px; 
+		}
+		.img {
+			width: 100%;
+			height: 130px;
+			float: top;
+		}
+		.zi {
+			width: 100%;
+			height: 50px;
+			float: top;
+		}
+		.collect {
+			width: 80px;
+			height: 40px;
+			background-color: #1FAFD2;
+			display: block;
+			float: left;
+			margin-right: 100px;
+			padding-top: 10px;
+		}
+		.sell {
+			width: 80px;
+			height: 40px;
+			background-color: #1FAFD2;
+			display: block;
+			float: left;
+			padding-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+	<ul class="nav nav-pills">
+	  <li role="presentation"><a href="{:U('Index/show')}">{$user}的主页</a></li>
+	  <li role="presentation" class="active"><a href="{:U('Index/collectDetail')}">我的收藏</a></li>
+	  <li role="presentation"><a href="{:U('Index/sellDetail')}">我的购买</a></li>
+	  <li role="presentation"><a href="{:U('Login/logout')}">注销</a></li>
+	  <li role="presentation"><a href="#">欢迎你, {$user}</a></li>
+	</ul>
+  </div>
+</nav>
+	<div class="header"></div>
+	<div class="detail" style="width: 70%;height: 500px; margin: 0 auto;">
+		<div class="row">
+			<volist name="data" id="vo">
+			  <div class="col-md-4 juti">
+			  	<div class="img"><img src="{$vo.img}"></div>
+			  	<div class="zi"> {$vo.goodsname}
+			  		<span>¥1579.00</span>
+			  		<span id="xia">¥1649.00</span>
+			  		
+			  	</div>
+				  	<button class="collect" id="collect" onclick="collect({$vo.goodsid})">收藏</button>
+				  	<button class="sell" id="sell" onclick="sell({$vo.goodsid})">购买</button>
+			  </div>
+			</volist>
+		</div>
+	</div>
+
+          <div id="foot" style="width: 100%; height: 50px; margin: 0 auto; float: left;">
+      
+              <span><a href="http://www.baidu.com" target="_blank"> 关于我们&nbsp;</a></span>|
+              <span><a href="http://www.baidu.com" target="_blank">联系我们&nbsp;</a></span>|
+              <span><a href="http://www.baidu.com" target="_blank">商家入驻&nbsp;</a></span>|
+              <span><a href="http://www.baidu.com" target="_blank">营销中心&nbsp;</a></span>|
+              <span><a href="http://www.baidu.com" target="_blank">手机柬索&nbsp;</a></span>|
+              <span><a href="http://www.baidu.com" target="_blank">友情链接&nbsp;</a></span>|
+              <span><a href="http://www.baidu.com" target="_blank">销售联盟&nbsp;</a></span>|
+              <span><a href="http://www.baidu.com" target="_blank">柬索社区&nbsp;</a></span>|
+              <span><a href="http://www.baidu.com" target="_blank">柬索公益&nbsp;</a></span>|
+              <span><a href="http://www.baidu.com" target="_blank">English Site&nbsp;</a></span>|
+              <span><a href="http://www.baidu.com" target="_blank">Contact Us</a></span>
+              
+         
+              
+          </div>
+
+<div id="rightAd">
+	<a href="http://www.baidu.com" target="_blank"><div id="rightAd1"></div></a>
+	<a href="http://www.baidu.com" target="_blank"><div id="rightAd2"></div></a>
+	<a href="http://www.baidu.com" target="_blank"><div id="rightAd3"></div></a>
+	<a href="http://www.baidu.com" target="_blank"><div id="rightAd4"></div></a>
+	<a href="http://www.baidu.com" target="_blank"><div id="rightAd5"></div></a>
+
+</div>  
+<script src="__PUBLIC__/js/jquery-1.11.3.min.js"></script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	  function collect(id)
+		{
+			$.ajax({
+				url :"{:U('index/collect')}",
+				type: "GET",
+				dataType: "json",
+				data: {"goodsid":id},
+				success: function(result) {
+					alert("收藏成功");
+				},
+				error : function (result) {
+					
+				}
+			});
+		}
+		function sell(id)
+		{
+			$.ajax({
+				url :"{:U('index/sell')}",
+				type: "GET",
+				dataType: "json",
+				data: {"goodsid":id},
+				success: function(result) {
+					
+				},
+				error : function (result) {
+					
+				}
+			});
+		}
+</script>
+</body>
+</html>
